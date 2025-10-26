@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CASHMAN CASINO</title>
+  <meta name="viewport" content="width= device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+* body { font-family: 'Arial', sans-serif; background: #0a0a0a; color: gold; text-align: center; padding: 10px; }
+* h1 { font-size: 2.5em; text-shadow: 0 0 15px #FFD700; margin: 15px 0; }
+* .balance { font-size: 22px; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 12px; margin: 15px auto; display: inline-block; }
+* .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px; }
+* .game { background: #1a1a1a; border: 2px solid gold; border-radius: 12px; padding: 10px; }
+* .slot { width: 60px; height: 60px; display: inline-block; margin: 3px; font-size: 30px; background: #000; border: 1px solid gold; border-radius: 8px; line-height: 60px; }
+* button { padding: 10px 20px; background: linear-gradient (#FFD700, #B8860B); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 5px; }
+* .buy-btn { background: #00FF00; color: black; }
+* </style>
+* </head>
+* <body>
+* <h1>CASHMAN CASINO</h1>
+* <p>Powered by <strong>$ ThepeoplesCasino</strong></p>
+  <div class="balance">
+    Coins: <span id="coins">100</span> | 
+    Sweeps: <span id="sweeps">0</span>
+  </div>
+  <button class="buy-btn" onclick="buy (10)">$10 → 1,000 Coins</button>
+  <button class="buy-btn" onclick="buy (25)">$25 → 3,000 Coins</button>
+  <button onclick="redeem()">CASH OUT </button>
+  <div class="game-grid" id ="games"></div>
+  <script>
+    let coins = 100, sweeps = 0;
+    const games = [
+      "Lucky 7s", "Gold Rush", "Diamond Dash", "Money Tree", "Cash Vault",
+      "Jackpot King", "Mega Spin", "Fortune Wheel", "Lucky Stars", "Gold Mine",
+      "Cash Storm", "Diamond Rain", "777 Fever", "Big Win", "Spin Master",
+      "Coin Blitz", "Treasure Hunt", "Money Rain", "Lucky Spin", "Gold Fever",
+      "Jackpot Party", "Spin City", "Cash Craze", "Win Zone", "Money Mania",
+      "Lucky Break", "Gold Rush X", "Spin & Win", "Cash King", "Mega Jackpot"
+    ];
+    const symbols = ['Cherry', 'Lemon', 'Bell', 'Seven', 'Diamond', 'Gold Bar', 'Star'];
+    games.forEach((name, i) => {
+      const div = document.createElement ('div');
+      div.className = 'game';
+      div.innerHTML = `
+        <h3>${name}</h3>
+        <div><div class="slot" id="s1-$ {i}">Cherry</div><div class="slot" id="s2-$ {i}">Cherry</div><div class="slot" id="s3-$ {i}">Cherry </div></div>
+        <button onclick="spin(${i})">SPIN (1 Coin)</button>
+      `;
+      document.getElementById ('games').appendChild(div);
+    });
+    function spin(gameId) {
+      if (coins < 1) return alert("Buy coins at $ ThepeoplesCasino");
+      coins--;
+      const s1 = rand(), s2 = rand(), s3 = rand ();
+      document.getElementById(`s1-$ {gameId}`).innerText = s1;
+      document.getElementById(`s2-$ {gameId}`).innerText = s2;
+      document.getElementById(`s3-$ {gameId}`).innerText = s3;
+      if (s1 === s2 && s2 === s3) {
+        let win = s1 === 'Seven' ? 5 : s1 == = 'Gold Bar' ? 6 : 2;
+        sweeps += win;
+        alert(`JACKPOT on ${games[gameId]}! +${win} Sweeps`);
+      } else if (Math.random() < 0.4) {
+        sweeps += 1;
+        alert(`+1 Sweep on ${games [gameId]}`);
+      }
+      update();
+    }
+    function rand() { return symbols [Math.floor(Math.random() * symbols.length)]; }
+    function buy(amount) {
+      const tag = "ThepeoplesCasino";
+      window.open(`https://cash.app/$$ {tag}/${amount}`, '_blank');
+      setTimeout(() => {
+        coins += amount * 100;
+        update();
+        alert(`$${amount} sent! ${amount * 100} Coins added!`);
+      }, 5000);
+    }
+    function redeem() {
+      if (sweeps < 10) return alert("Need 10+ Sweeps");
+      const email = prompt("PayPal Email:");
+      if (email) {
+        const payout = (sweeps * 0.01).toFixed (2);
+        window.open(` https://paypal.me/ThepeoplesCasino/$ {payout}`, '_blank');
+        setTimeout(() => {
+          sweeps = 0;
+          update();
+          alert(`$${payout} sent to ${email}!`);
+        }, 3000);
+      }
+    }
+    function update() {
+      document.getElementById ('coins').innerText = coins;
+      document.getElementById ('sweeps').innerText = sweeps;
+    }
+    update();
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <title>CASHMAN CASINO</title>
+  <meta name="viewport" content="width= device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+* body { font-family: 'Arial', sans-serif; background: #0a0a0a; color: gold; text-align: center; padding: 10px; }
+* h1 { font-size: 2.5em; text-shadow: 0 0 15px #FFD700; margin: 15px 0; }
+* .balance { font-size: 22px; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 12px; margin: 15px auto; display: inline-block; }
+* .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px; }
+* .game { background: #1a1a1a; border: 2px solid gold; border-radius: 12px; padding: 10px; }
+* .slot { width: 60px; height: 60px; display: inline-block; margin: 3px; font-size: 30px; background: #000; border: 1px solid gold; border-radius: 8px; line-height: 60px; }
+* button { padding: 10px 20px; background: linear-gradient (#FFD700, #B8860B); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 5px; }
+* .buy-btn { background: #00FF00; color: black; }
+* </style>
+* </head>
+* <body>
+* <h1>CASHMAN CASINO</h1>
+* <p>Powered by <strong>$ ThepeoplesCasino</strong></p>
+  <div class="balance">
+    Coins: <span id="coins">100</span> | 
+    Sweeps: <span id="sweeps">0</span>
+  </div>
+  <button class="buy-btn" onclick="buy (10)">$10 → 1,000 Coins</button>
+  <button class="buy-btn" onclick="buy (25)">$25 → 3,000 Coins</button>
+  <button onclick="redeem()">CASH OUT </button>
+  <div class="game-grid" id ="games"></div>
+  <script>
+    let coins = 100, sweeps = 0;
+    const games = [
+      "Lucky 7s", "Gold Rush", "Diamond Dash", "Money Tree", "Cash Vault",
+      "Jackpot King", "Mega Spin", "Fortune Wheel", "Lucky Stars", "Gold Mine",
+      "Cash Storm", "Diamond Rain", "777 Fever", "Big Win", "Spin Master",
+      "Coin Blitz", "Treasure Hunt", "Money Rain", "Lucky Spin", "Gold Fever",
+      "Jackpot Party", "Spin City", "Cash Craze", "Win Zone", "Money Mania",
+      "Lucky Break", "Gold Rush X", "Spin & Win", "Cash King", "Mega Jackpot"
+    ];
+    const symbols = ['Cherry', 'Lemon', 'Bell', 'Seven', 'Diamond', 'Gold Bar', 'Star'];
+    games.forEach((name, i) => {
+      const div = document.createElement ('div');
+      div.className = 'game';
+      div.innerHTML = `
+        <h3>${name}</h3>
+        <div><div class="slot" id="s1-$ {i}">Cherry</div><div class="slot" id="s2-$ {i}">Cherry</div><div class="slot" id="s3-$ {i}">Cherry </div></div>
+        <button onclick="spin(${i})">SPIN (1 Coin)</button>
+      `;
+      document.getElementById ('games').appendChild(div);
+    });
+    function spin(gameId) {
+      if (coins < 1) return alert("Buy coins at $ ThepeoplesCasino");
+      coins--;
+      const s1 = rand(), s2 = rand(), s3 = rand ();
+      document.getElementById(`s1-$ {gameId}`).innerText = s1;
+      document.getElementById(`s2-$ {gameId}`).innerText = s2;
+      document.getElementById(`s3-$ {gameId}`).innerText = s3;
+      if (s1 === s2 && s2 === s3) {
+        let win = s1 === 'Seven' ? 5 : s1 == = 'Gold Bar' ? 6 : 2;
+        sweeps += win;
+        alert(`JACKPOT on ${games[gameId]}! +${win} Sweeps`);
+      } else if (Math.random() < 0.4) {
+        sweeps += 1;
+        alert(`+1 Sweep on ${games [gameId]}`);
+      }
+      update();
+    }
+    function rand() { return symbols [Math.floor(Math.random() * symbols.length)]; }
+    function buy(amount) {
+      const tag = "ThepeoplesCasino";
+      window.open(`https://cash.app/$$ {tag}/${amount}`, '_blank');
+      setTimeout(() => {
+        coins += amount * 100;
+        update();
+        alert(`$${amount} sent! ${amount * 100} Coins added!`);
+      }, 5000);
+    }
+    function redeem() {
+      if (sweeps < 10) return alert("Need 10+ Sweeps");
+      const email = prompt("PayPal Email:");
+      if (email) {
+        const payout = (sweeps * 0.01).toFixed (2);
+        window.open(` https://paypal.me/ThepeoplesCasino/$ {payout}`, '_blank');
+        setTimeout(() => {
+          sweeps = 0;
+          update();
+          alert(`$${payout} sent to ${email}!`);
+        }, 3000);
+      }
+    }
+    function update() {
+      document.getElementById ('coins').innerText = coins;
+      document.getElementById ('sweeps').innerText = sweeps;
+    }
+    update();
+  </script>
+</body>
+</html>
+
